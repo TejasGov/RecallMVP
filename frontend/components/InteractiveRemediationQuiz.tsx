@@ -39,7 +39,9 @@ export default function InteractiveRemediationQuiz({
 
   const [inputVal, setInputVal] = useState("");
   const [currentHintLevel, setCurrentHintLevel] = useState<number>(0);
-  const [cognitiveState, setCognitiveState] = useState<"exploring" | "struggling" | "stuck" | "mastered">("exploring");
+  const [cognitiveState, setCognitiveState] = useState<
+    "exploring" | "struggling" | "stuck" | "mastered" | "making_progress"
+  >("exploring");
   const [activeMisconception, setActiveMisconception] = useState<string>("Off-by-One / Null Boundary Check");
   const [isAiTyping, setIsAiTyping] = useState(false);
   const [hintsUsed, setHintsUsed] = useState(0);
@@ -82,8 +84,9 @@ export default function InteractiveRemediationQuiz({
     setIsAiTyping(true);
     setTimeout(() => {
       if (isCorrect) {
-        setCognitiveState("making_progress" as any);
+        setCognitiveState("making_progress");
         setMessages((prev) => [
+
           ...prev,
           {
             id: `socra-resp-${Date.now()}`,
